@@ -85,36 +85,34 @@ name: Guest House
 name: Patio
 */
 
-// Characters Collection
-var charactersArray = [mrGreen, drOrchid, profPlum, missScarlet, mrsPeacock, mrMustard];
 
 // Rooms' Collection
-var roomsArray = [{name: "rope", weight: 10}, 
-                  {name: "knife", weight: 8},
-                  {name: "candlestick", weight: 2},
-                  {name: "dumbbell", weight: 30},
-                  {name: "poison", weight: 2},
-                  {name: "axe", weight: 15},
-                  {name: "bat", weight: 13},
-                  {name: "trophy", weight: 25}, 
-                  {name: "pistol", weight: 20}];
+var weaponsArray = [{name: "rope", weight: 10}, 
+{name: "knife", weight: 8},
+{name: "candlestick", weight: 2},
+{name: "dumbbell", weight: 30},
+{name: "poison", weight: 2},
+{name: "axe", weight: 15},
+{name: "bat", weight: 13},
+{name: "trophy", weight: 25}, 
+{name: "pistol", weight: 20}];
 
 // Weapons Collection
-var weaponsArray = [{name: "Dinning Room"},
-                    {name: "Conservatory"},
-                    {name: "Kitchen"},
-                    {name: "Study"},
-                    {name: "Library"},
-                    {name: "Billiard Room"},
-                    {name: "Lounge"},
-                    {name: "Ballroom"},
-                    {name: "Hall"},
-                    {name: "Spa"},
-                    {name: "Living Room"},
-                    {name: "Observatory"},
-                    {name: "Theater"},
-                    {name: "Guest House"},
-                    {name: "Patio"}];
+var roomsArray = [{name: "Dinning Room"},
+{name: "Conservatory"},
+{name: "Kitchen"},
+{name: "Study"},
+{name: "Library"},
+{name: "Billiard Room"},
+{name: "Lounge"},
+{name: "Ballroom"},
+{name: "Hall"},
+{name: "Spa"},
+{name: "Living Room"},
+{name: "Observatory"},
+{name: "Theater"},
+{name: "Guest House"},
+{name: "Patio"}];
 
 
 const mrGreen = {
@@ -177,6 +175,25 @@ const mrMustard = {
     occupation:   "Retired Football player"
 };
 
+// Characters Collection
+const charactersArray = [mrGreen, drOrchid, profPlum, missScarlet, mrsPeacock, mrMustard];
+
 function randomSelector(array) {
-    array[Math.floor((Math.random() * array.length) + 1)];
+    const randomNumber = Math.floor(Math.random() * array.length);
+    return array[randomNumber];
 };
+
+function pickMistery() {
+    const character = randomSelector(charactersArray);
+    const weapon = randomSelector(weaponsArray);
+    const room = randomSelector(roomsArray);
+    const misteryEnvelope = [character, weapon, room];
+    return misteryEnvelope;
+};
+
+function revealMistery(misteryEnvelope) {
+    let sentence = misteryEnvelope[0].first_name + " " + misteryEnvelope[0].last_name; 
+    sentence = sentence + " killed Mr.Boddy using the " + misteryEnvelope[1].name;
+    sentence = sentence + " in the " + misteryEnvelope[2].name + "!!!!";
+    return sentence; 
+}
